@@ -24,3 +24,18 @@ insert into SuatChieu values ('SC007', '20:00:00', '22:00:00')
 
 select * from SuatChieu
 select * from LoaiVe
+
+--VIẾT THỦ TỤC TÌM MÃ VÉ
+CREATE PROC sp_MaLV @MaLV char(5)
+AS
+SELECT * FROM LoaiVe WHERE MaLV = @MaLV
+
+EXEC sp_MaLV 'LV001'
+
+--VIẾT THỦ TỤC TÌM MÃ SUẤT CHIẾU
+CREATE PROC sp_MaSC @MaSC char(5)
+AS
+SELECT * FROM SuatChieu WHERE MaSC = @MaSC
+
+EXEC sp_MaSC 'SC001'
+
