@@ -105,9 +105,20 @@ BEGIN
 	update SuatChieu SET GioBD=@GioBĐ, GioKT=@GioKT WHERE MaSC = @MaSC
 END;
 -- View thông tin doanh thu từng loại vé
-create view DoanhThu as
+create table Ve(
+MaV char(10) primary key,
+TrangThai char(10),
+MaLV char(5) references LoaiVe(MaLV),
+)
+insert into Ve values ('V01', 'BinhThuong', 'LV001')
+insert into Ve values ('V02', 'Huy', 'LV001')
+insert into Ve values ('V03', 'BinhThuong', 'LV001')
+select * from Ve
+drop table Ve
+alter view DoanhThu as
 select a.MaLV, count(a.MaV) as 'So Luong', sum(b.DonGia) as 'Tong Thu'
 from Ve a inner join LoaiVe b
-on a.MaLV=b.MaLV
+on a.MaLV=b.MaLV and a.TrangThai = 'BinhThuong'
 group by a.MaLV
+select * from DoanhThu
 
