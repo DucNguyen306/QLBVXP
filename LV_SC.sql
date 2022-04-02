@@ -120,5 +120,11 @@ select a.MaLV, count(a.MaV) as 'So Luong', sum(b.DonGia) as 'Tong Thu'
 from Ve a inner join LoaiVe b
 on a.MaLV=b.MaLV and a.TrangThai = 'BinhThuong'
 group by a.MaLV
+create view ThongKeHuy as
+select a.MaLV, count(a.MaV) as 'So Luong', sum(b.DonGia) as 'Tong Thu'
+from Ve a inner join LoaiVe b
+on a.MaLV=b.MaLV and a.TrangThai = 'Huy'
+group by a.MaLV
 select * from DoanhThu
+select * from ThongKeHuy
 
