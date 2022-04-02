@@ -104,4 +104,10 @@ BEGIN
  ELSE
 	update SuatChieu SET GioBD=@GioBĐ, GioKT=@GioKT WHERE MaSC = @MaSC
 END;
+-- View thông tin doanh thu từng loại vé
+create view DoanhThu as
+select a.MaLV, count(a.MaV) as 'So Luong', sum(b.DonGia) as 'Tong Thu'
+from Ve a inner join LoaiVe b
+on a.MaLV=b.MaLV
+group by a.MaLV
 
